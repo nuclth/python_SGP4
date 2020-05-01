@@ -1,7 +1,8 @@
 from zonal_harmonic_updates import zonal_harmonic_update
 from primary_atmospheric_updates import primary_atmospheric_update
+from secondary_atmospheric_updates import secondary_atmospheric_update
 
-def zonal_harmonic_atmospheric_update(bstar, mean_anomaly, arg_perigee, raan, inclination, eccentricity, semimajor_axis, mean_motion, time_diff):
+def zonal_harmonic_atmospheric_update(bstar, mean_anomaly, arg_perigee, raan, inclination, eccentricity, semimajor_axis, mean_motion, time_diff, perigee_height):
 
     (m_zonal, w_zonal, o_zonal) = zonal_harmonic_update(inclination, eccentricity, semimajor_axis, mean_motion)
 
@@ -17,9 +18,9 @@ def zonal_harmonic_atmospheric_update(bstar, mean_anomaly, arg_perigee, raan, in
 
     return (updated_mean_anomaly, updated_arg_perigee, updated_raan)
 
-def secondary_atmospheric_update():
+def secondary_atmospheric_update_wrapper(perigee_height, a, e, n, n0, p, t, w, bstar, time_diff, m, m0, o):
 
-    (delta_e, delta_a, delta_IL) = secondary_atmospheric_update()
+    (delta_e, delta_a, delta_IL) = secondary_atmospheric_update(perigee_height, a, e, n, n0, p, t, w, bstar, time_diff, m, m0)
 
     updated_eccentricity = e - delta_e 
     updated_semimajor_axis = delta_a 
