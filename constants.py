@@ -2,6 +2,8 @@ import math
 
 ## value given constants
 
+DEGREES_TO_RADIANS = math.pi / 180.
+
 # universal gravitational constants
 G = 0 # TODO get real value
 
