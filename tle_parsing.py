@@ -91,6 +91,6 @@ def parse_tle_line_2(line):
     eccentricity = float('0.' + line[26:33])
     arg_perigee = float(line[34:42]) * DEGREES_TO_RADIANS
     mean_anomaly = float(line[43:51]) * DEGREES_TO_RADIANS 
-    mean_motion = float(line[52:63]) / 1440. #TODO check units, revs/day initially -> revs/min
+    mean_motion = float(line[52:63]) * (2.0 * math.pi / 1440.) 
 
     return (inclination, raan, eccentricity, arg_perigee, mean_anomaly, mean_motion)

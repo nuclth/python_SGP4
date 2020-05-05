@@ -14,4 +14,4 @@ def compute_perigee_height(a, e):
     return perigee_height
 
 def compute_semimajor_axis(n):
-    return math.pow(ke / (2. * math.pi * n), (2./3.))
+    return math.pow(ke / n, (2./3.))
