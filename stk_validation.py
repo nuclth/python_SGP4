@@ -4,12 +4,11 @@ from helper_functions import get_epoch_time
 def get_stk_data(reference_frame):
      stk_data = []
 
-     for
 
 def load_stk_ephemeris(filename):
     stk_data = {}
 
-    ephemerisList = []
+    ephemeris_list = []
 
     with open(filename, 'r') as stream:
         data_counter = 0
@@ -19,7 +18,7 @@ def load_stk_ephemeris(filename):
             if 'NumberOfEphemerisPoints' in line:
                 data = list(filter(None, line.split(' ')))
                 numPoints = int(data[1])
-                stk_data['numberPoints'] = numPoints
+                stk_data['number_points'] = numPoints
             
             if 'CoordinateSystem' in line:
                 data = list(filter(None, line.split(' ')))
@@ -39,13 +38,14 @@ def load_stk_ephemeris(filename):
                 print (count)
                 data_flag = False
                 
-
             if data_flag and (data_counter < numPoints):
                 data_counter += 1
                 data = list(filter(None, line.split(" ")))
-                time = data[0]
-                position = np.array([data[1], data[2], data[3]])
+                time = float(data[0])
+                position = np.array([float(data[1]), float(data[2]), float(data[3])])
                 ephemeris= {'time' : time, 'position' : position}
-                ephemerisList.append(ephemeris)
+                ephemeris_list.append(ephemeris)
 
-    stk_data['ephemerisList'] = ephemerisList
+    stk_data['ephemeris_list'] = ephemeris_list
+
+    return stk_data
