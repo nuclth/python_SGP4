@@ -1,6 +1,11 @@
 import numpy as np
 from helper_functions import get_epoch_time
 
+def get_stk_data(reference_frame):
+     stk_data = []
+
+     for
+
 def load_stk_ephemeris(filename):
     stk_data = {}
 

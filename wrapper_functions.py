@@ -35,6 +35,36 @@ def validate_sgp4(filename):
             
             stream.close
 
+def sgp4_wrapper(filename):
+    tle_objs = parse_tle_file(filename)
+    time_start = datetime.datetime(2020, 4, 30, 16, 0, 0, 0)
+
+    time_vals = [time_start + datetime.timedelta(seconds=t) for t in range(0,10)]
+
+    sat_objs = []
+
+    for tle_obj in tle_objs:
+        
+        print("WARNING: BSTAR SET TO 0")
+        tle_obj['bstar'] = 0.
+
+        sat_obj = {'input_tle_obj' : tle_obj}
+
+        ephemeris_list = []
+
+        for time_val in time_vals:
+            
+            pos = sgp4(tle_obj, time_val)
+            pos *= rEarth
+            ephemeris = {'time' : time_val, 'position' : pos}
+
+            ephemeris_list.append(ephemeris)
+        
+        sat_obj['ephemeris_list'] = ephemeris_list
+        sat_objs.append(sat_obj)
+
+    return sat_objs
+
 def sgp4(tle_obj, time_val):
 
     # step 0 - get variables

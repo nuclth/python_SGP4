@@ -1,5 +1,6 @@
 import datetime
 import math
+import matplotlib.pyplot as plt
 
 def get_epoch_time(time_string):
     year = 2000 + int(time_string[0:2]) if int(time_string[0:2]) < 30 else 1900 + int(time_string[0:2])
@@ -13,3 +14,6 @@ def get_epoch_time(time_string):
 
     epoch_time = datetime.datetime(year, month, day, hour, minute, second)
     return epoch_time
+
+def make_difference_plot():
+    pass
