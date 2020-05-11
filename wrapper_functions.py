@@ -8,6 +8,7 @@ from updates import zonal_harmonic_atmospheric_update, secondary_atmospheric_upd
 from long_periodic_gravity_updates import long_periodic_gravity_update
 from kepler_equation import kepler_iteration
 from short_periodic_gravity_updates import short_periodic_gravity_update
+from frame_transformations import teme2pef
 
 # def validate_sgp4(filename):
 #     tle_objs = parse_tle_file(filename)
@@ -49,8 +50,9 @@ def sgp4_wrapper(filename):
             print('Warning: Skipping tle object {}'.format(tle_obj['catalog_string']))
             continue
 
-        print("WARNING: BSTAR SET TO 0")
-        tle_obj['bstar'] = 0.
+        # print(tle_obj['bstar'])
+        # print("WARNING: BSTAR SET TO 0")
+        # tle_obj['bstar'] = 0.
 
         sat_obj = {'input_tle_obj' : tle_obj}
 
@@ -58,9 +60,11 @@ def sgp4_wrapper(filename):
 
         for time_val in time_vals:
             
-            pos = sgp4(tle_obj, time_val)
-            pos *= rEarth
-            ephemeris = {'time' : time_val, 'position' : pos}
+            pos_teme = sgp4(tle_obj, time_val)
+            pos_teme *= rEarth
+            pos_pef = teme2pef(pos_teme, time_val)
+            ephemeris = {'time' : time_val, 'position_teme' : pos_teme, 'position_pef' : pos_pef}
+
 
             ephemeris_list.append(ephemeris)
         

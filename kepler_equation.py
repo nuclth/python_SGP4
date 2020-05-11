@@ -13,7 +13,7 @@ def kepler_iteration(ILT, omega, axN, ayN):
 
     percent_diff = get_percent_diff(prev_E_plus_w, E_plus_w)
 
-    while(percent_diff > 1):
+    while(percent_diff > 0.0001):
         prev_E_plus_w = E_plus_w
         delta_E_plus_w = compute_kepler_delta_equation(U, axN, ayN, prev_E_plus_w)
         E_plus_w = prev_E_plus_w + delta_E_plus_w

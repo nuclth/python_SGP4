@@ -14,7 +14,7 @@ def compute_eccentricity(axN, ayN):
     return math.sqrt(axN*axN + ayN*ayN)
 
 def get_r(a, eCosE):
-    return a* (1. - eCosE)
+    return a * (1. - eCosE)   
 
 def compute_rdot(a, r, eSinE):
     rdot = ke * math.sqrt(a) /r * eSinE

@@ -38,7 +38,7 @@ def get_C2(perigee_height, a, e, n, t):
 def get_C3(perigee_height, a, n, i , e):
     s = get_s_altitude_parameter(perigee_height)
     xi = get_xi(a, perigee_height)
-    numer = math.pow(q0 - s, 4.) * math.pow(xi, 5.) * A30 * n * rEarth * math.sin(i)
+    numer = math.pow(q0 - s, 4.) * math.pow(xi, 5.) * A30 * n * math.sin(i)
     denom = k2 * e
     C3 = numer / denom
     return C3
@@ -47,9 +47,9 @@ def get_C4(perigee_height, a, e, n, p, t, w):
     s = get_s_altitude_parameter(perigee_height)
     xi = get_xi(a, perigee_height)
     eta = get_eta(a, e, perigee_height)
-    prefactor1 = 2. * n * math.pow(q0 - s, 4.) * math.pow(xi, 4.) * a * math.pow(p, 2.) * math.pow(1 - eta*eta, -7./2.)
+    prefactor1 = 2. * n * math.pow(q0 - s, 4.) * math.pow(xi, 4.) * a * math.pow(p, 2.) * math.pow(1. - eta*eta, -7./2.)
     prefactor2 = 2. * k2 * xi / (a * (1. - eta*eta))
-    term1 = 2. * eta * (1 + e * eta) + (1./2.) * e + (1./2.) * math.pow(eta, 3.)
+    term1 = 2. * eta * (1. + e * eta) + (1./2.) * e + (1./2.) * math.pow(eta, 3.)
     term2 = 3. * (1. - 3. * t*t) * (1. + (3./2.)*eta*eta - 2.* e * eta - (1./2.) * e * math.pow(eta, 3.))
     term3 = (3./4.) * (1. - t*t) * (2. * eta * eta - e * eta - e * math.pow(eta, 3.)) * math.cos(2.*w)
 
@@ -60,7 +60,7 @@ def get_C5(perigee_height, a, e, p):
     s = get_s_altitude_parameter(perigee_height)
     xi = get_xi(a, perigee_height)
     eta = get_eta(a, e, perigee_height)
-    prefactor = 2. * math.pow(q0 - s, 4.) * math.pow(xi, 4.) * a * math.pow(p, 2.) * math.pow(1 - eta*eta, -7./2.)
+    prefactor = 2. * math.pow(q0 - s, 4.) * math.pow(xi, 4.) * a * math.pow(p, 2.) * math.pow(1. - eta*eta, -7./2.)
     brackets = 1. + (11./4.) * eta * (eta + e) + e * math.pow(eta, 3.)
     C5 = prefactor * brackets
     return C5

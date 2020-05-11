@@ -26,7 +26,7 @@ def compute_delta_M(perigee_height, a, e, bstar, M_DF, m):
     eta = get_eta(a, e, perigee_height)
     xi = get_xi(a, perigee_height)
 
-    prefactor = -(2./3.) * math.pow(q0 - s, 4.) * bstar * math.pow(xi, 4.) * rEarth / (e * eta)
+    prefactor = -(2./3.) * math.pow(q0 - s, 4.) * bstar * math.pow(xi, 4.) / (e * eta) # TODO Verify rEarth not here
     term1 = math.pow(1. + eta * math.cos(M_DF), 3.)
     term2 = math.pow(1. + eta * math.cos(m), 3.)
 

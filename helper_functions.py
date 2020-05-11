@@ -33,9 +33,9 @@ def make_difference_plot(stk_data, python_data):
         stk_pos_z.append(ephem['position'][2] / 1000.)
 
     for ephem in python_data['ephemeris_list']:
-        python_pos_x.append(ephem['position'][0])
-        python_pos_y.append(ephem['position'][1])
-        python_pos_z.append(ephem['position'][2])
+        python_pos_x.append(ephem['position_pef'][0])
+        python_pos_y.append(ephem['position_pef'][1])
+        python_pos_z.append(ephem['position_pef'][2])
 
     assert len(stk_pos_x) == len(python_pos_x), str.format('STK and Python X array lengths ({} {}) do not match'.format(len(stk_pos_x), len(python_pos_x))) 
     assert len(stk_pos_y) == len(python_pos_y), 'STK and Python Y array lengths do not match'
